@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mess Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background: url("{% static 'mess.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 35px 30px;
+            max-width: 500px;
+            width: 100%;
+            color: #fff;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .form-container:hover {
+            box-shadow: 0 12px 38px rgba(0, 0, 0, 0.35);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+            color: #00eaff;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input::placeholder {
+            color: #ccc;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .radio-group label {
+            font-size: 14px;
+        }
+
+        input[type="radio"] {
+            accent-color: #00eaff;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #0072ff, #00c6ff);
+        }
+    </style>
+</head>
+<body>
+
+<div class="overlay">
+    <form method="POST" class="form-container">
+        {% csrf_token %}
+        <h2>🍽️ Mess Registration</h2>
+
+        <div class="form-group">
+            <label for="studentName">Student Name</label>
+            <input type="text" name="student_name" id="studentName" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="studentID">User ID</label>
+            <input type="text" name="student_id" id="studentID" placeholder="Enter your ID" required>
+        </div>
+
+        <div class="form-group">
+            <label for="roomNumber">Room Number</label>
+            <input type="text" name="room_number" id="roomNumber" placeholder="Enter your room number" required>
+        </div>
+
+        <div class="form-group", id="id1">
+            <label>Mess Type</label>
+            <div class="radio-group">
+                <label><input type="radio" name="subscription_type" value="monthly" required> Monthly</label>
+                <label><input type="radio" name="subscription_type" value="yearly" required> Yearly</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="startDate">Start Date</label>
+            <input type="date" name="start_date" id="startDate" required>
+        </div>
+
+        <button type="submit" id="registerButton" disabled>Register Now</button>
+
+        <script>
+            const form = document.querySelector('.form-container');
+            const submitButton = document.getElementById('registerButton');
+
+            // Enable/disable button based on form validity
+            form.addEventListener('input', () => {
+                submitButton.disabled = !form.checkValidity();
+            });
+
+            // Show popup only after form is submitted and valid
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent actual form submission (for demonstration)
+                alert('Register successfully');
+                form.submit(); // Now submit the form after showing alert
+            });
+        </script>
+
+    </form>
+</div>
+
+</body>
+</html>

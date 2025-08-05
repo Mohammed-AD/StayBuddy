@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f1f1f1;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: white;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mess Registration Dashboard</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>User ID</th>
+                <th>Room Number</th>
+                <th>Subscription</th>
+                <th>Start Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reg in registrations %}
+            <tr>
+                <td>{{ reg.student_name }}</td>
+                <td>{{ reg.student_id }}</td>
+                <td>{{ reg.room_number }}</td>
+                <td>{{ reg.subscription_type }}</td>
+                <td>{{ reg.start_date }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No registrations found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

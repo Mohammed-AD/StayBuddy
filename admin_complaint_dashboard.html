@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Complaints</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #eef2f7;
+        }
+        h2 {
+            color: #007bff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 14px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f5faff;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>📋 Student Complaints</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Room No</th>
+                <th>Complaint</th>
+                <th>Submitted At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in complaints %}
+            <tr>
+                <td>{{ c.name }}</td>
+                <td>{{ c.room_no }}</td>
+                <td>{{ c.complaint }}</td>
+                <td>{{ c.submitted_at }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4">No complaints submitted.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Complaint Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background: linear-gradient(to right, #007bff, #00c6ff);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .form-title {
+            font-weight: 600;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+
+        label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-control {
+            border-radius: 12px;
+            padding: 10px 14px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(to right, #007bff, #00c6ff);
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 16px;
+            color: white;
+            transition: background 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(to right, #00c6ff, #007bff);
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2 class="form-title">📩 Submit a Complaint</h2>
+    <form method="POST" action="{% url 'usercomplaints' %}">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Student Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="room_no" class="form-label">Room Number</label>
+            <input type="text" class="form-control" id="room_no" name="room_no" placeholder="Enter your room number" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="complaint" class="form-label">Complaint Details</label>
+            <textarea class="form-control" id="complaint" name="complaint" rows="5" placeholder="Write your complaint here..." required></textarea>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-submit">Submit Complaint</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

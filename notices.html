@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hostel Notices</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background: url("{% static 'hostel.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .notice-board {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 700px;
+            padding: 30px;
+            color: white;
+            box-shadow: 0 0 25px rgba(0,0,0,0.5);
+        }
+
+        .notice-board h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .notice {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .notice h3 {
+            margin: 0 0 8px 0;
+            font-size: 18px;
+            color: #00e5ff;
+        }
+
+        .notice p {
+            margin: 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="notice-board">
+            <h2>📢 Hostel Notices</h2>
+
+            <!-- Example Notices -->
+            <div class="notice">
+                <h3>Power Shutdown on Saturday</h3>
+                <p>There will be a scheduled power outage on 5th May from 10 AM to 2 PM for maintenance.</p>
+            </div>
+
+            <div class="notice">
+                <h3>Mess Menu Update</h3>
+                <p>The new weekly mess menu will be effective from 6th May. Check the notice board for details.</p>
+            </div>
+
+            <div class="notice">
+                <h3> Room Bookings</h3>
+                <p> rooms can now be booked online through the hostel portal. Visit the reception for queries.</p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

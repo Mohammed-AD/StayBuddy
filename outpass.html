@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hostel Outpass Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: url("{% static 'out.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .overlay {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .booking-form {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 16px;
+            padding: 30px;
+            width: 90%;
+            max-width: 550px;
+            color: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+        }
+
+        .booking-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #ffffffcc;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            border: none;
+            border-radius: 14px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #0072ff, #00c6ff);
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <form method="POST" class="booking-form">
+            {% csrf_token %}
+            <h2>📄Hostel Outpass Form</h2>
+
+            <div class="form-group">
+                <label for="studentName">Student Name</label>
+                <input type="text" name="student_name" id="studentName" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="outTime">Out Time</label>
+                <input type="time" name="out_time" id="outTime" required>
+            </div>
+
+            <div class="form-group">
+                <label for="outDate">Out Date</label>
+                <input type="date" name="out_date" id="outDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="outTDate">In Date</label>
+                <input type="date" name="out_tdate" id="outTDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="inTime">In Time</label>
+                <input type="time" name="in_time" id="inTime" required>
+            </div>
+
+            <div class="form-group">
+                <label for="placeGoing">Place of Going</label>
+                <input type="text" name="place_going" id="placeGoing" placeholder="Enter place" required>
+            </div>
+
+            <div class="form-group">
+                <label for="purposeGoing">Purpose of Going</label>
+                <textarea name="purpose_going" id="purposeGoing" rows="3" placeholder="Describe the purpose..." required></textarea>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

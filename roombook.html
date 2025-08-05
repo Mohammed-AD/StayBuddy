@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hostel Room Booking</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: url("{% static 'hroom1.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+
+        .center-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .booking-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .booking-form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 30px;
+            color: #010a0b;
+            text-shadow: 0 0 5px rgba(0, 238, 255, 0.4);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #ccc;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #00bcd4;
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .radio-group label {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .radio-group input {
+            accent-color: #00eaff;
+        }
+
+        .radio-group label:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 198, 255, 0.3);
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #0072ff, #00c6ff);
+            box-shadow: 0 6px 16px rgba(0, 198, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="center-container">
+        <form method="POST" action="{% url 'roombook' %}" class="booking-form">
+            {% csrf_token %}
+            <h2>🏨 Hostel Room Booking</h2>
+
+            <div class="form-group">
+                <label for="student_name">Student Name</label>
+                <input type="text" name="student_name" id="student_name" placeholder="Enter full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" name="phone" id="phone" placeholder="10-digit number" pattern="[0-9]{10}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="birth_date">Date of Birth</label>
+                <input type="date" name="birth_date" id="birth_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea name="address" id="address" rows="3" placeholder="Enter your address" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Preferred Floor</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="floor" value="Ground" required> Ground</label>
+                    <label><input type="radio" name="floor" value="First"> First</label>
+                    <label><input type="radio" name="floor" value="Second"> Second</label>
+                    <label><input type="radio" name="floor" value="Third"> Third</label>
+                    <label><input type="radio" name="floor" value="Fourth"> Fourth</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="booking_date">Date of Arrival</label>
+                <input type="date" name="booking_date" id="booking_date" required>
+            </div>
+
+            <button type="submit">Book Room</button>
+        </form>
+    </div>
+
+</body>
+</html>
